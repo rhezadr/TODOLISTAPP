@@ -14,11 +14,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String ROW_USERNAME = "Username";
     public static final String ROW_PASSWORD = "Password";
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase sqLiteDatabase;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, 2);
-        db = getWritableDatabase();
+        sqLiteDatabase = getWritableDatabase();
     }
 
     @Override
@@ -29,13 +29,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
     //Insert Data
     public void insertData(ContentValues values){
-        db.insert(TABLE_NAME, null, values);
+        sqLiteDatabase.insert(TABLE_NAME, null, values);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.mytodolist.Register;
+package com.example.mytodolist;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.mytodolist.Login.LoginActivity;
-import com.example.mytodolist.R;
+import com.example.mytodolist.Utils.DBHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 

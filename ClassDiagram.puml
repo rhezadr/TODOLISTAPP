@@ -1,0 +1,135 @@
+@startuml
+class com.example.mytodolist.ExampleInstrumentedTest {
++ void useAppContext()
+}
+class com.example.mytodolist.LoginActivity {
+~ EditText etUsername
+~ Button btnLogin
+~ DBHelper dbHelper
+~ SharedPreferences sharedPreferences
+- {static} String SHARED_PREF_NAME
+- {static} String KEY_NAME
+- {static} String KEY_PASS
+# void onCreate(Bundle)
++ {static} Spanned fromHtml(String)
+}
+class com.example.mytodolist.ExampleUnitTest {
++ void addition_isCorrect()
+}
+class com.example.mytodolist.TouchHelper {
+- MyToDoAdapter adapter
++ boolean onMove(RecyclerView,RecyclerView.ViewHolder,RecyclerView.ViewHolder)
++ void onSwiped(RecyclerView.ViewHolder,int)
++ void onChildDraw(Canvas,RecyclerView,RecyclerView.ViewHolder,float,float,int,boolean)
+}
+class com.example.mytodolist.Utils.DatabaseHelper {
+- {static} int VERSION
+- {static} String NAME
+- {static} String TODO_TABLE
+- {static} String ID
+- {static} String TASK
+- {static} String STATUS
+- {static} String CREATE_TODO_TABLE
+- SQLiteDatabase db
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void openDatabase()
++ void insertTask(MyToDoModel)
++ List<MyToDoModel> getAllTasks()
++ void updateStatus(int,int)
++ void updateTask(int,String)
++ void deleteTask(int)
+}
+class com.example.mytodolist.SplashActivity {
+# void onCreate(Bundle)
+}
+interface com.example.mytodolist.DialogCloseListener {
++ void handleDialogClose(DialogInterface)
+}
+class com.example.mytodolist.Utils.DBHelper {
++ {static} String DATABASE_NAME
++ {static} String TABLE_NAME
++ {static} String ROW_ID
++ {static} String ROW_USERNAME
++ {static} String ROW_PASSWORD
+- SQLiteDatabase db
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void insertData(ContentValues)
++ boolean checkUser(String,String)
+}
+class com.example.mytodolist.BuildConfig {
++ {static} boolean DEBUG
++ {static} String APPLICATION_ID
++ {static} String BUILD_TYPE
++ {static} int VERSION_CODE
++ {static} String VERSION_NAME
+}
+class com.example.mytodolist.RegisterActivity {
+~ EditText etUsername
+~ Button btnRegister
+~ DBHelper dbHelper
+# void onCreate(Bundle)
++ {static} Spanned fromHtml(String)
+}
+class com.example.mytodolist.AddTask {
++ {static} String TAG
+- EditText newTaskText
+- Button newTaskSaveButton
+- DatabaseHelper db
++ {static} AddTask newInstance()
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onViewCreated(View,Bundle)
++ void onDismiss(DialogInterface)
+}
+class com.example.mytodolist.MainActivity {
+- DatabaseHelper db
+- RecyclerView taskRecyclerView
+- MyToDoAdapter taskAdapter
+- FloatingActionButton fab
+- List<MyToDoModel> taskList
+# void onCreate(Bundle)
++ void handleDialogClose(DialogInterface)
+}
+class com.example.mytodolist.Model.MyToDoModel {
+- int id
+- String task
++ int getId()
++ void setId(int)
++ int getStatus()
++ void setStatus(int)
++ String getTask()
++ void setTask(String)
+}
+class com.example.mytodolist.Adapters.MyToDoAdapter {
+- List<MyToDoModel> todoList
+- DatabaseHelper db
+- MainActivity activity
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
+- boolean toBoolean(int)
++ int getItemCount()
++ Context getContext()
++ void setTasks(List<MyToDoModel>)
++ void deleteItem(int)
++ void editItem(int)
+}
+class com.example.mytodolist.Adapters.MyToDoAdapter.ViewHolder {
+~ CheckBox task
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mytodolist.LoginActivity
+com.example.mytodolist.SimpleCallback <|-- com.example.mytodolist.TouchHelper
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.mytodolist.Utils.DatabaseHelper
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mytodolist.SplashActivity
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.mytodolist.Utils.DBHelper
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mytodolist.RegisterActivity
+com.google.android.material.bottomsheet.BottomSheetDialogFragment <|-- com.example.mytodolist.AddTask
+com.example.mytodolist.DialogCloseListener <|.. com.example.mytodolist.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.mytodolist.MainActivity
+com.example.mytodolist.Adapters.Adapter <|-- com.example.mytodolist.Adapters.MyToDoAdapter
+com.example.mytodolist.Adapters.MyToDoAdapter +.. com.example.mytodolist.Adapters.MyToDoAdapter.ViewHolder
+com.example.mytodolist.Adapters.ViewHolder <|-- com.example.mytodolist.Adapters.MyToDoAdapter.ViewHolder
+@enduml
